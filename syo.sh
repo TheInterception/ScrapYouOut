@@ -89,7 +89,7 @@ case $options in
 ;;
 5) echo "=== HTTP Response Headers ==="
    echo ""
-   curl https://api.hackertarget.com/httpheaders/?q=$addr
+   curl -i $addr
    echo ""
    echo ""
    echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
@@ -101,8 +101,17 @@ case $options in
    ;;
    esac
 ;;
-6) curl https://api.hackertarget.com/bannerlookup/?q=ginandjuice.shop/24
-   echo ""  
+6) convaddr=$(echo -e "$(dig +short $addr)" | awk '{print ; exit}')
+   curl https://api.hackertarget.com/bannerlookup/?q=$convaddr/24 
+   echo ""
+   echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
+   read exopt
+   case $exopt in
+   y) bash syo.sh
+   ;;
+   n) echo "[!] Exiting Script!"
+   ;;
+   esac
 ;; 
 7) echo "=== Robots.txt ==="
    echo ""
