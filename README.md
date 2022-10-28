@@ -17,7 +17,7 @@ The No-Nonsense Jam-Packed Information Gathering Tool Designed using Kali Linux
 <img src="https://user-images.githubusercontent.com/58417506/198718154-dc159bf9-1e2d-4b2a-9727-d684249bcc76.png" width="800px" height="450px">
 
 <h1>Installation</h1>
-<ul type="circle">
+<ol type=1>
 <li>Change the permission of requirements.sh to executable file [ chmod +x requirements.sh ]</li>
 <li>Run the requirements.sh dependancy using the command [ bash requirements.sh ]</li>
 <li>Run the ScrapYouOut tool using the the command [ bash syo.sh ]</li>
