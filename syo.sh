@@ -25,6 +25,7 @@ echo "6 >> Site Banner Grabbing"
 echo "7 >> Pull robots.txt"
 echo "8 >> Check IP Origin"
 echo "9 >> Whois Lookup"
+echo "10 >> Aggressive Port Scan"
 echo ""
 
 echo "Choose your option:"
@@ -151,6 +152,18 @@ case $options in
    ;;
    esac
 
+;;
+10) echo "=== Aggressive Port Scan ==="
+    nmap -A $addr
+    echo ""
+    echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
+    read exopt
+    case $exopt in
+    y) bash syo.sh
+    ;;
+    n) echo "[!] Exiting Script!"
+    ;;
+    esac
 ;;
 *) echo "[X] Invalid Input!"
    echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
