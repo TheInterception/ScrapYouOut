@@ -2,4 +2,6 @@
 The No-Nonsense Information Gathering Tool
 
 <h1>Proof of Concept</h1>
-![ScreenShot](https://user-images.githubusercontent.com/58417506/198713230-b41d74c4-2871-4641-b19b-91ec58f0b9a5.png)
+![1](https://user-images.githubusercontent.com/58417506/198713768-8d648337-3aa0-4234-8676-82a4dbc51dd4.png)
+
+
