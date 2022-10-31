@@ -176,16 +176,36 @@ case $options in
     esac
 ;;
 11)echo "=== Web Vulnerability Scanner ==="
-   sudo nikto -h $addr && sudo  wapiti -u $addr
+   echo "1 >> Launch Nikto Web Scanner"
+   echo "2 >> Launch WAPITI Web Scanner"
+   echo "3 >> Back to Main Menu"
+   read opts
+   case $opts in 
+   1) sudo nikto -h $addr
    echo ""
    echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
-   read exopt
-   case $exopt in
-   y) bash syo.sh
+    read exopt 
+    case $exopt in
+     y) bash syo.sh
+     ;;  
+     n) echo "[!] Exiting Script!"
+     ;;
+    esac
    ;;
-   n) echo "[!] Exiting Script!"
-   ;;
-   esac 
+   2) sudo wapiti -u https://$addr
+      echo ""
+      echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
+      read exopt 
+      case $exopt in
+       y) bash syo.sh
+       ;;  
+       n) echo "[!] Exiting Script!"
+       ;;  
+       esac
+      ;;
+    3) bash syo.sh
+     ;; 
+   esac
 ;;
 *) echo "[X] Invalid Input!"
    echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
