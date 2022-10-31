@@ -1,7 +1,16 @@
 clear
 bold=$(tput bold)
 endbold=$(tput sgr0)
+
+if ((RANDOM%2 == 0))
+then
 toilet -f slant --filter border:gay ScrapYouOut///
+elif (( RANDOM%2 == 1 ))
+then
+toilet -f slant --filter border:metal ScrapYouOut///
+else
+toilet -f slant --filter border ScrapYouOut///
+fi 
 
 echo ""
 echo "${bold}THE NO-NONSENSE FINGERPRINTING AND INFORMATION GATHERING TOOL${endbold}"
@@ -26,6 +35,7 @@ echo "7 >> Pull robots.txt"
 echo "8 >> Check IP Origin"
 echo "9 >> Whois Lookup"
 echo "10 >> Aggressive Port Scan"
+echo "11 >> Web Vulnerability Scanner"
 echo ""
 
 echo "Choose your option:"
@@ -164,6 +174,18 @@ case $options in
     n) echo "[!] Exiting Script!"
     ;;
     esac
+;;
+11)echo "=== Web Vulnerability Scanner ==="
+   sudo nikto -h $addr && sudo  wapiti -u $addr
+   echo ""
+   echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
+   read exopt
+   case $exopt in
+   y) bash syo.sh
+   ;;
+   n) echo "[!] Exiting Script!"
+   ;;
+   esac 
 ;;
 *) echo "[X] Invalid Input!"
    echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
