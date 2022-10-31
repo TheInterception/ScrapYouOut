@@ -13,7 +13,7 @@ toilet -f slant --filter border ScrapYouOut///
 fi 
 
 echo ""
-echo "${bold}THE NO-NONSENSE FINGERPRINTING AND INFORMATION GATHERING TOOL${endbold}"
+echo "${bold}THE NO-NONSENSE Vulnerability Analysis & INFORMATION GATHERING TOOL${endbold}"
 echo "Current Date: " && date
 echo "================================================================================================="
 echo "================================================================================================="
@@ -36,6 +36,7 @@ echo "8 >> Check IP Origin"
 echo "9 >> Whois Lookup"
 echo "10 >> Aggressive Port Scan"
 echo "11 >> Web Vulnerability Scanner"
+echo "12 >> Exit Script"
 echo ""
 
 echo "Choose your option:"
@@ -206,6 +207,9 @@ case $options in
     3) bash syo.sh
      ;; 
    esac
+;;
+12) echo "[!] Exiting Script"
+    echo "Bye!"
 ;;
 *) echo "[X] Invalid Input!"
    echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
