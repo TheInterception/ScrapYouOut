@@ -14,6 +14,7 @@ fi
 
 echo ""
 echo "${bold}THE NO-NONSENSE Vulnerability Analysis & INFORMATION GATHERING TOOL${endbold}"
+echo "${bold}Designed by:${endbold} Sachin Verlekar (the_int3rceptor.exe)"
 echo "Current Date: " && date
 echo "================================================================================================="
 echo "================================================================================================="
@@ -36,7 +37,8 @@ echo "8 >> Check IP Origin"
 echo "9 >> Whois Lookup"
 echo "10 >> Aggressive Port Scan"
 echo "11 >> Web Vulnerability Scanner"
-echo "12 >> Exit Script"
+echo "12 >> Local Ports & Running Service Check"
+echo "13 >> Exit Script"
 echo ""
 
 echo "Choose your option:"
@@ -165,7 +167,7 @@ case $options in
 
 ;;
 10) echo "=== Aggressive Port Scan ==="
-    nmap -A $addr
+    sudo nmap -A -sS -Pn $addr
     echo ""
     echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
     read exopt
@@ -208,7 +210,34 @@ case $options in
      ;; 
    esac
 ;;
-12) echo "[!] Exiting Script"
+12) echo "=== Local Port Running Service Checker ==="
+    sudo lsof -i -P -n
+    echo ""
+    echo "[!]Enter the number of times you want to check for running port services"
+    read n
+    for(( i=0; i<n; i++ ))
+    do
+    echo "Enter the Port Number to check for Running Service:"
+    read portnum
+    service=$(sudo lsof -i:$portnum)
+    if [ -z "$service" ];
+    then
+    echo "[ALERT] No Running service found"
+    else
+    sudo lsof -i:$portnum
+    fi
+done
+      echo ""
+      echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
+      read exopt 
+      case $exopt in
+       y) bash syo.sh
+       ;;  
+       n) echo "[!] Exiting Script!"
+       ;;  
+       esac
+;;
+13) echo "[!] Exiting Script"
     echo "Bye!"
 ;;
 *) echo "[X] Invalid Input!"
