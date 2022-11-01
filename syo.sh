@@ -212,6 +212,20 @@ case $options in
 ;;
 12) echo "=== Local Port Running Service Checker ==="
     sudo lsof -i -P -n
+    allports=$(sudo lsof -i -P -n)
+    if [ -z "$allports" ]
+    then
+    echo "[ALERT] No Running Services Found on your System"
+    echo ""
+    echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
+    read exopt 
+    case $exopt in
+       y) bash syo.sh
+       ;;  
+       n) echo "[!] Exiting Script!"
+       ;;  
+    esac
+    fi
     echo ""
     echo "[!]Enter the number of times you want to check for running port services"
     read n
@@ -235,7 +249,7 @@ done
        ;;  
        n) echo "[!] Exiting Script!"
        ;;  
-       esac
+      esac
 ;;
 13) echo "[!] Exiting Script"
     echo "Bye!"
