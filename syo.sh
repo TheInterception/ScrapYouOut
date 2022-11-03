@@ -24,7 +24,7 @@ read addr
 echo ""
 echo "[!] Based on your input, We have Recieved the Following IP Address(s)"
 dig +short $addr
-
+echo ""
 echo "${bold}=== Main Menu (Use Numericals for Option Selection)${endbold}"
 echo "1 >> DNS Lookup"
 echo "2 >> Reverse DNS Lookup"
@@ -38,7 +38,8 @@ echo "9 >> Whois Lookup"
 echo "10 >> Aggressive Port Scan"
 echo "11 >> Web Vulnerability Scanner"
 echo "12 >> Local Ports & Running Service Check"
-echo "13 >> Exit Script"
+echo "13 >> Web Full-Screen Capture"
+echo "14 >> Exit Script"
 echo ""
 
 echo "Choose your option:"
@@ -227,11 +228,11 @@ case $options in
     esac
     fi
     echo ""
-    echo "[!]Enter the number of times you want to check for running port services"
+    echo "[!] Enter the number of times you want to check for running port services"
     read n
     for(( i=0; i<n; i++ ))
     do
-    echo "Enter the Port Number to check for Running Service:"
+    echo "[!] Enter the Port Number to check for Running Service:"
     read portnum
     service=$(sudo lsof -i:$portnum)
     if [ -z "$service" ];
@@ -251,7 +252,22 @@ done
        ;;  
       esac
 ;;
-13) echo "[!] Exiting Script"
+13) echo "=== Web Screen Capture ==="
+    echo "[!] Name of the file to be saved:"
+    read fname
+    cutycapt --url=$addr --out=$fname.png
+    echo "[*] Please wait...Capturing!"
+    echo ""
+    echo "${bold}[ALERT] Do you want to run the script again? (y/n)${endbold}"
+    read exopt 
+    case $exopt in
+       y) bash syo.sh
+       ;;  
+       n) echo "[!] Exiting Script!"
+       ;;  
+    esac
+;;
+14) echo "[!] Exiting Script"
     echo "Bye!"
 ;;
 *) echo "[X] Invalid Input!"
