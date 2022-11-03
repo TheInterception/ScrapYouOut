@@ -1,4 +1,5 @@
 sudo apt install toilet
+sudo apt install cutycapt
 sudo apt install lsof
 sudo apt install wapiti
 sudo apt install nmap
